@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
+      "label": "Rust: cargo build",
       "args": ["build", "-v"],
       "command": "cargo",
       "group": "build",
@@ -24,7 +24,35 @@
       ]
     },
     {
-      "label": "clean",
+      "type": "shell",
+      "command": "cargo",
+      "args": ["fmt"],
+      "problemMatcher": ["$rustc"],
+      "group": "none",
+      "label": "Rust: cargo fmt"
+    },
+    {
+      "label": "Rust: cargo check",
+      "args": ["check", "-v"],
+      "command": "cargo",
+      "group": "build",
+      "problemMatcher": {
+        "owner": "rust",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(\\d+):(\\d+)\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "endLine": 4,
+          "endColumn": 5,
+          "severity": 6,
+          "message": 7
+        }
+      }
+    },
+    {
+      "label": "Rust: cargo clean",
       "args": ["clean"],
       "command": "cargo",
       "presentation": {
@@ -32,7 +60,7 @@
       }
     },
     {
-      "label": "run",
+      "label": "Rust: cargo run",
       "args": ["run", "-v"],
       "command": "cargo",
       "presentation": {
@@ -60,7 +88,7 @@
       ]
     },
     {
-      "label": "test",
+      "label": "Rust: cargo test",
       "type": "process",
       "args": ["test"],
       "command": "cargo",
@@ -97,7 +125,7 @@
       ]
     },
     {
-      "label": "bench",
+      "label": "Rust: cargo bench",
       "args": ["bench"],
       "command": "cargo",
       "presentation": {
@@ -131,6 +159,16 @@
           }
         }
       ]
-    }
+    },
+		{
+			"type": "shell",
+			"command": "cargo",
+			"args": ["build","--release"],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "Rust: cargo build release"
+		}
   ]
 }

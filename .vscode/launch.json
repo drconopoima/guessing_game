@@ -7,7 +7,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/target/debug/${workspaceRootFolderName}",
             "args": [],
-            "preLaunchTask": "build",
+            "preLaunchTask": "Rust: cargo build",
             "cwd": "${workspaceFolder}"
         }
     ]
