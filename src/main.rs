@@ -10,7 +10,21 @@ fn main() {
         io::stdin()
             .read_line(&mut guess)
             .expect("Failed to retrieve value");
-        let guess: u32 = guess.trim().parse().expect("Please type a number");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please input a number.");
+                continue;
+            }
+        };
+        if guess < 1 {
+            println!("Please input a number equal or higher than 1");
+            continue;
+        }
+        if guess > 100 {
+            println!("Please input a number equal or lower than 100");
+            continue;
+        }
         println!("Your guess is: {}", guess);
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
